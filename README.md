@@ -8,19 +8,21 @@ wrapper around the norebo runtime) has real potential, in a couple of dimensions
 
 One is: the idea of communicating sequential processes, where each process is a node in a network of oberon
 RISC5 machines (virtual or real). To play with that idea would be relatively simple, given a norebo, and
-shell scripts.
+shell scripts. (For this, the VMs should have each have their own Oberon filesystems (each image being
+in a file - the original Project Oberon VM does this too; I haven't implemented this idea yet).
 
 But more so: writing "real-world" Oberon modules, things that can actually be used in the modern world. I'm
-not entirely sure this is reasonable, because Oberon (meaning Oberon-07) is rather under-powered, relative
+not entirely sure this is practical, because Oberon (meaning Oberon-07) is rather under-powered, relative
 to something like C#. I might be understating the gulf between them.
 
 On the other hand: Oberon is a human-sized language, whereas a C# is going to take some real study. Python is
 a good choice, though, too, sort of - and obviously way more popular. 
 
-But I mean, Oberon-07 is a formal, computer science sort of language, a distillation
-of practical and mathematical and minimal. Python is executable pseudo-code, basically. One builds a Python using
-an Oberon, not the other way around. As such, is more like a C or an Ada or a Zig, all three of which are considerably
-harder to understand and use than Oberon.
+But I mean, Oberon-07 is a formal, computer science sort of language, a near minimal distillation
+of practical and mathematical, with little (if any) compromising of either at the language level. 
+
+Further, one builds a Python using an Oberon, not the other way around. As such, Oberon is more like a C
+or an Ada or a Zig, all three of which are considerably harder to understand than Oberon.
 
 Of course, the RISC5 VM in this code is slow, relative to what a compiled version of the same code would do. But one
 of the changes I made was to the VM so that if it is compiled with full optimizations, the resulting code is really
