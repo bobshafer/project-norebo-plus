@@ -1,3 +1,40 @@
+# Project Norebo Plus
+
+See below for original readme. This fork has not yet been updated with changes I've made in my copy over time.
+
+I haven't made that many changes, either. Just a couple. However, I have always felt that this particular
+way of using oberon (I use it like 'nw ORP.Compile Foo.Mod' for example, where 'nw' is a shell script
+wrapper around the norebo runtime) has real potential, in a couple of dimensions.
+
+One is: the idea of communicating sequential processes, where each process is a node in a network of oberon
+RISC5 machines (virtual or real). To play with that idea would be relatively simple, given a norebo, and
+shell scripts.
+
+But more so: writing "real-world" Oberon modules, things that can actually be used in the modern world. I'm
+not entirely sure this is reasonable, because Oberon (meaning Oberon-07) is rather under-powered, relative
+to something like C#. I might be understating the gulf between them.
+
+On the other hand: Oberon is a human-sized language, whereas a C# is going to take some real study. Python is
+a good choice, though, too, sort of - and obviously way more popular. 
+
+But I mean, Oberon-07 is a formal, computer science sort of language, a distillation
+of practical and mathematical and minimal. Python is executable pseudo-code, basically. One builds a Python using
+an Oberon, not the other way around. As such, is more like a C or an Ada or a Zig, all three of which are considerably
+harder to understand and use than Oberon.
+
+Of course, the RISC5 VM in this code is slow, relative to what a compiled version of the same code would do. But one
+of the changes I made was to the VM so that if it is compiled with full optimizations, the resulting code is really
+quite speedy, given that it is interpreting the RISC5 instruction streams, which is itself a simple instruction set
+and not inherently speedy (not like an ARM would be).
+
+One of the things I was thinking would be neat to do would be to have the compiler's output, which is for RISC5, be
+transliterated into ARM aarch64 instructions - there is presumably an onto mapping from RISC5 to aarch64 instructions,
+both of which are 32-bit long. I might see if Copilot can help me generate (Oberon) code for that.
+
+And, finally, this is here just in case. I'd hate to see this code disappear from the internet.
+
+---
+
 # Project Norebo
 
 Norebo is a hack to run some _Project Oberon 2013_ software on the
