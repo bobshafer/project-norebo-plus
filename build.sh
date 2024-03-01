@@ -17,7 +17,7 @@ function rename {
 }
 
 function compile_everything {
-  ../norebo ORP.Compile \
+  ../zorebo ORP.Compile \
 	Norebo.Mod/s \
 	Kernel.Mod/s \
   	FileDir.Mod/s \
@@ -34,7 +34,7 @@ function compile_everything {
   	ORP.Mod/s \
   	ORTool.Mod/s
   rename rsc rsx
-  ../norebo CoreLinker.LinkSerial Modules InnerCore
+  ../zorebo CoreLinker.LinkSerial Modules InnerCore
   rename rsx rsc
 }
 
@@ -68,3 +68,6 @@ cd ..
 echo
 echo '=== Verification === '
 diff -r build2 build3 && echo 'OK: Stage 2 and Stage 3 are identical.'
+
+mkdir -p Kernel
+cp build3/* Kernel

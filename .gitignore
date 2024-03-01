@@ -1,2 +1,8 @@
-/norebo
-/build*/
+Kernel/
+build1/
+build2/
+build3/
+zorebo
+*,*
+*.rsc
+*.smb

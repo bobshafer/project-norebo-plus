@@ -25,7 +25,7 @@ def mksubdir(parent, subdir):
 
 
 def norebo(args, working_directory='.', search_path=()):
-    norebo = os.path.join(NOREBO_ROOT, 'norebo')
+    norebo = os.path.join(NOREBO_ROOT, 'zorebo')
     norebo_path = os.pathsep.join(search_path)
     os.environ['NOREBO_PATH'] = norebo_path
     logging.debug('Running norebo\n\tCWD = %s\n\tPATH = %s\n\t%s',
@@ -36,7 +36,7 @@ def compile(modules, **kwargs):
     norebo(['ORP.Compile'] + [m+'/s' for m in modules], **kwargs)
 
 
-def build_norebo(target_dir):
+def build_zorebo(target_dir):
     compile(['Norebo.Mod', 'Kernel.Mod', 'FileDir.Mod', 'Files.Mod',
              'Modules.Mod', 'Fonts.Mod', 'Texts.Mod', 'RS232.Mod', 'Oberon.Mod',
              'ORS.Mod', 'ORB.Mod', 'ORG.Mod', 'ORP.Mod', 'CoreLinker.Mod',
@@ -63,8 +63,8 @@ def build_image(sources_dir):
     compiler_dir = mksubdir(target_dir, 'compiler')
     oberon_dir = mksubdir(target_dir, 'oberon')
 
-    logging.info('Building norebo')
-    build_norebo(norebo_dir)
+    logging.info('Building zorebo')
+    build_zorebo(norebo_dir)
 
     logging.info('Building a cross-compiler')
     compile(['ORS.Mod', 'ORB.Mod', 'ORG.Mod', 'ORP.Mod'],
