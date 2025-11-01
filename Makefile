@@ -7,8 +7,8 @@ all: $(DEST)/nw zorebo
 norebo.exe: Runtime/norebo.c Runtime/risc-cpu.c Runtime/risc-cpu.h
 	$(CC) -o $@ Runtime/norebo.c Runtime/risc-cpu.c $(CFLAGS)
 
-zorebo: Runtime/zorebo.c
-	$(CC) -o $@ Runtime/zorebo.c $(CFLAGS)
+zorebo: Runtime/zorebo.o
+	$(CC) -o $@ Runtime/zorebo.o $(CFLAGS)
 
 $(DEST)/nw: make-nw.sh
 	sh make-nw.sh > $(DEST)/nw
