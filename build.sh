@@ -27,6 +27,8 @@ function compile_everything {
   	Texts.Mod/s \
   	RS232.Mod/s \
   	Oberon.Mod/s \
+	IO.Mod/s \
+	Shell.Mod/s \
   	CoreLinker.Mod/s \
   	ORS.Mod/s \
   	ORB.Mod/s \

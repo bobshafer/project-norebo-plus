@@ -22,6 +22,7 @@ MODULE Norebo;
     filedirEnumerateBegin* = 31;
     filedirEnumerateNext* = 32;
     filedirEnumerateEnd* = 33;
+    noreboSystem* = 42;
 
   VAR res*: INTEGER;
 
@@ -50,5 +51,9 @@ MODULE Norebo;
   PROCEDURE ParamStr*(n: INTEGER; VAR param: ARRAY OF CHAR);
   BEGIN SysReq(noreboArgv, n, SYSTEM.ADR(param), LEN(param))
   END ParamStr;
+
+  PROCEDURE System*(cmd, len: INTEGER);
+  BEGIN SysReq(noreboSystem, cmd, len, 0)
+  END System;
 
 END Norebo.

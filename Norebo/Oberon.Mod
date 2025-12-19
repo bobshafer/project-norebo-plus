@@ -187,6 +187,27 @@ MODULE Oberon; (*derived from JG 6.9.90 / 23.9.93 / 13.8.94 / NW 14.4.2013 / 22.
     Norebo.ParamStr(0, p); Call(p, res); Norebo.Halt(res)
   END ParamCall;
 
+  PROCEDURE StartShell;
+    VAR mod: Modules.Module; step: Modules.Command;
+      res, argc: INTEGER;
+  BEGIN
+    argc := Norebo.ParamCount();
+    IF argc > 0 THEN
+      ParamCall
+    ELSE
+      Modules.Load("Shell", mod); res := Modules.res;
+      IF res = 0 THEN
+        step := Modules.ThisCommand(mod, "Step"); res := Modules.res;
+        IF res = 0 THEN
+          CurTask := NewTask(step, 1); Install(CurTask);
+          Install(NewTask(GC, 1000));
+          Loop
+        END
+      END;
+      ParamCall
+    END
+  END StartShell;
+
   PROCEDURE Trap(VAR a: INTEGER; b: INTEGER);
     VAR u, v, w, pos, name: INTEGER; mod: Modules.Module;
   BEGIN u := SYSTEM.REG(15); SYSTEM.GET(u - 4, v); w := v DIV 10H MOD 10H; (*trap number*)
@@ -200,6 +221,6 @@ MODULE Oberon; (*derived from JG 6.9.90 / 23.9.93 / 13.8.94 / NW 14.4.2013 / 22.
 
 BEGIN 
   Kernel.Install(SYSTEM.ADR(Trap), 20H);
-  User[0] := 0X; ActCnt := 0; CurTask := NewTask(GC, 1000); Install(CurTask);
-  OpenLog; ParamCall;
+  User[0] := 0X; ActCnt := 0;
+  OpenLog; StartShell;
 END Oberon.

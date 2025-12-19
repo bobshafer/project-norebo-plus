@@ -103,6 +103,22 @@ static uint32_t norebo_argv(uint32_t idx, uint32_t adr, uint32_t siz) {
   }
 }
 
+static uint32_t norebo_system(uint32_t adr, uint32_t len, uint32_t _3) {
+  if (len == 0) {
+    return 0;
+  }
+  mem_check_range(adr, len, "Norebo.System");
+  char *buf = malloc(len + 1);
+  if (!buf) {
+    errx(1, "Norebo.System: out of memory");
+  }
+  memcpy(buf, mem + adr, len);
+  buf[len] = 0;
+  int rc = system(buf);
+  free(buf);
+  return (uint32_t)rc;
+}
+
 static bool files_get_name(char *name, uint32_t adr);
 
 static uint32_t norebo_trap(uint32_t trap, uint32_t name_adr, uint32_t pos) {
@@ -384,6 +400,7 @@ static sysreq_fn sysreq_table[] = {
   [ 2] = norebo_argc,
   [ 3] = norebo_argv,
   [ 4] = norebo_trap,
+  [42] = norebo_system,
 
   [11] = files_new,
   [12] = files_old,
